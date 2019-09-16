@@ -78,5 +78,11 @@
             <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
             <returns>The response, deserialized</returns>
         </member>
+        <member name="M:Penguin.Web.JsonClient.PreRequest(System.Uri)">
+            <summary>
+            Gets called before each request is made incase there is code that needs to be run each time
+            </summary>
+            <param name="url">The URL being requested</param>
+        </member>
     </members>
 </doc>
