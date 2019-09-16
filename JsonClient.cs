@@ -9,7 +9,7 @@ namespace Penguin.Web
     /// <summary>
     /// WebClient with options to upload/download objects by converting to/from Json, for Json endpoints. Use "UploadJson" and "DownloadJson"
     /// </summary>
-    public class JsonClient : WebClient
+    public class JsonClient : WebClientEx
     {
         /// <summary>
         /// The default settings to use for serialization/deserialization if not otherwise specified
@@ -25,21 +25,76 @@ namespace Penguin.Web
             DefaultSettings = jsonSerializerSettings ?? new JsonSerializerSettings();
         }
 
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public T DownloadJson<T>(string url, JsonSerializerSettings downloadSerializerSettings = null)
+
+        /// <summary>
+        /// Download string but with Json
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize the response into</typeparam>
+        /// <param name="url">The url to download</param>
+        /// <param name="downloadSerializerSettings">The serializer settings to use when deserializing the response</param>
+        /// <returns>The deserialized response</returns>
+        public T DownloadJson<T>(string url, JsonSerializerSettings downloadSerializerSettings = null) => DownloadJson<T>(new Uri(url), downloadSerializerSettings);
+
+        /// <summary>
+        /// Download string but with Json
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize the response into</typeparam>
+        /// <param name="url">The url to download</param>
+        /// <param name="downloadSerializerSettings">The serializer settings to use when deserializing the response</param>
+        /// <returns>The deserialized response</returns>
+        public T DownloadJson<T>(Uri url, JsonSerializerSettings downloadSerializerSettings = null)
         {
             return JsonConvert.DeserializeObject<T>(this.DownloadString(url), downloadSerializerSettings ?? DefaultSettings);
         }
 
-        public T UploadJson<T>(string url, object toUpload, JsonSerializerSettings downloadSerializerSettings = null, JsonSerializerSettings uploadSerializerSettings = null)
-        {
-            return JsonConvert.DeserializeObject<T>(this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings)), downloadSerializerSettings ?? DefaultSettings);
-        }
+        /// <summary>
+        /// Upload string, but with Json
+        /// </summary>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The pre-serialized object to upload</param>
+        /// <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
+        /// <returns>The string response from the server</returns>
+        public string UploadJson(string url, object toUpload, JsonSerializerSettings uploadSerializerSettings = null) => UploadJson(new Uri(url), toUpload, uploadSerializerSettings);
 
-        public string UploadJson(string url, object toUpload, JsonSerializerSettings uploadSerializerSettings = null)
+
+        /// <summary>
+        /// Upload string, but with Json
+        /// </summary>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The pre-serialized object to upload</param>
+        /// <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
+        /// <returns>The string response from the server</returns>
+        public string UploadJson(Uri url, object toUpload, JsonSerializerSettings uploadSerializerSettings)
         {
             return this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings));
         }
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+
+        /// <summary>
+        /// Upload string, but with Json
+        /// </summary>
+        /// <typeparam name="T">the type to deserialize the response to</typeparam>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The pre-serialized object to upload</param>
+        /// <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
+        /// <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
+        /// <returns>The response, deserialized</returns>
+        public T UploadJson<T>(string url, object toUpload, JsonSerializerSettings downloadSerializerSettings = null, JsonSerializerSettings uploadSerializerSettings = null) => UploadJson<T>(new Uri(url), toUpload, downloadSerializerSettings, uploadSerializerSettings);
+      
+        /// <summary>
+        /// Upload string, but with Json
+        /// </summary>
+        /// <typeparam name="T">the type to deserialize the response to</typeparam>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The pre-serialized object to upload</param>
+        /// <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
+        /// <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
+        /// <returns>The response, deserialized</returns>
+        public T UploadJson<T>(Uri url, object toUpload, JsonSerializerSettings downloadSerializerSettings, JsonSerializerSettings uploadSerializerSettings)
+        {
+            return JsonConvert.DeserializeObject<T>(this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings)), downloadSerializerSettings ?? DefaultSettings);
+
+        }
+
+
     }
 }
