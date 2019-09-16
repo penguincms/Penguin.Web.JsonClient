@@ -44,6 +44,7 @@ namespace Penguin.Web
         /// <returns>The deserialized response</returns>
         public T DownloadJson<T>(Uri url, JsonSerializerSettings downloadSerializerSettings = null)
         {
+            this.Headers[HttpRequestHeader.Accept] = "application/json, text/plain, */*";
             return JsonConvert.DeserializeObject<T>(this.DownloadString(url), downloadSerializerSettings ?? DefaultSettings);
         }
 
@@ -66,6 +67,7 @@ namespace Penguin.Web
         /// <returns>The string response from the server</returns>
         public string UploadJson(Uri url, object toUpload, JsonSerializerSettings uploadSerializerSettings)
         {
+            this.Headers[HttpRequestHeader.ContentType] = "application/json;charset=UTF-8";
             return this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings));
         }
 
@@ -91,6 +93,8 @@ namespace Penguin.Web
         /// <returns>The response, deserialized</returns>
         public T UploadJson<T>(Uri url, object toUpload, JsonSerializerSettings downloadSerializerSettings, JsonSerializerSettings uploadSerializerSettings)
         {
+            this.Headers[HttpRequestHeader.Accept] = "application/json, text/plain, */*";
+            this.Headers[HttpRequestHeader.ContentType] = "application/json;charset=UTF-8";
             return JsonConvert.DeserializeObject<T>(this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings)), downloadSerializerSettings ?? DefaultSettings);
 
         }
