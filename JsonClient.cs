@@ -51,7 +51,6 @@ namespace Penguin.Web
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
             return JsonConvert.DeserializeObject<T>(this.DownloadString(url), downloadSerializerSettings ?? DefaultSettings);
         }
-
         /// <summary>
         /// Upload string, but with Json
         /// </summary>
@@ -86,7 +85,7 @@ namespace Penguin.Web
         /// <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
         /// <returns>The response, deserialized</returns>
         public T UploadJson<T>(string url, object toUpload, JsonSerializerSettings downloadSerializerSettings = null, JsonSerializerSettings uploadSerializerSettings = null) => UploadJson<T>(new Uri(url), toUpload, downloadSerializerSettings, uploadSerializerSettings);
-      
+
         /// <summary>
         /// Upload string, but with Json
         /// </summary>
@@ -102,6 +101,59 @@ namespace Penguin.Web
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
             this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
             return JsonConvert.DeserializeObject<T>(this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings)), downloadSerializerSettings ?? DefaultSettings);
+
+        }
+
+        /// <summary>
+        /// Upload string, but with Json. Uses the PATCH method 
+        /// </summary>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The pre-serialized object to upload</param>
+        /// <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
+        /// <returns>The string response from the server</returns>
+        public string PatchJson(string url, object toUpload, JsonSerializerSettings uploadSerializerSettings = null) => PatchJson(new Uri(url), toUpload, uploadSerializerSettings);
+
+
+        /// <summary>
+        /// Upload string, but with Json. Uses the PATCH method 
+        /// </summary>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The pre-serialized object to upload</param>
+        /// <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
+        /// <returns>The string response from the server</returns>
+        public string PatchJson(Uri url, object toUpload, JsonSerializerSettings uploadSerializerSettings = null)
+        {
+            PreRequest(url);
+            this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
+            return this.UploadString(url, "PATCH", JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings));
+        }
+
+        /// <summary>
+        /// Upload string, but with Json. Uses the PATCH method 
+        /// </summary>
+        /// <typeparam name="T">the type to deserialize the response to</typeparam>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The pre-serialized object to upload</param>
+        /// <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
+        /// <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
+        /// <returns>The response, deserialized</returns>
+        public T PatchJson<T>(string url, object toUpload, JsonSerializerSettings downloadSerializerSettings = null, JsonSerializerSettings uploadSerializerSettings = null) => PatchJson<T>(new Uri(url), toUpload, downloadSerializerSettings, uploadSerializerSettings);
+      
+        /// <summary>
+        /// Upload string, but with Json. Uses the PATCH method 
+        /// </summary>
+        /// <typeparam name="T">the type to deserialize the response to</typeparam>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The pre-serialized object to upload</param>
+        /// <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
+        /// <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
+        /// <returns>The response, deserialized</returns>
+        public T PatchJson<T>(Uri url, object toUpload, JsonSerializerSettings downloadSerializerSettings = null, JsonSerializerSettings uploadSerializerSettings = null)
+        {
+            PreRequest(url);
+            this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
+            this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
+            return JsonConvert.DeserializeObject<T>(this.UploadString(url, "PATCH", JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings)), downloadSerializerSettings ?? DefaultSettings);
 
         }
 
