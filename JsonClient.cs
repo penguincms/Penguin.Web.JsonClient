@@ -96,7 +96,7 @@ namespace Penguin.Web
         /// <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
         /// <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
         /// <returns>The response, deserialized</returns>
-        public T UploadJson<T>(Uri url, object toUpload, JsonSerializerSettings downloadSerializerSettings, JsonSerializerSettings uploadSerializerSettings = null)
+        public T UploadJson<T>(Uri url, object toUpload, JsonSerializerSettings downloadSerializerSettings = null, JsonSerializerSettings uploadSerializerSettings = null)
         {
             PreRequest(url);
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
