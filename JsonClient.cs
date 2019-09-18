@@ -72,6 +72,7 @@ namespace Penguin.Web
         {
             PreRequest(url);
             this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
+            this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
             return this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings));
         }
 
@@ -125,6 +126,7 @@ namespace Penguin.Web
         {
             PreRequest(url);
             this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
+            this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
             return this.UploadString(url, "PATCH", JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings));
         }
 
