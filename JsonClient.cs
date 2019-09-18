@@ -11,6 +11,9 @@ namespace Penguin.Web
     /// </summary>
     public class JsonClient : WebClientEx
     {
+        private const string ACCEPT_CONTENTTYPE = "application/json, text/plain, */*";
+        private const string CONTENTTYPE = "application/json;charset=UTF-8";
+
         /// <summary>
         /// The default settings to use for serialization/deserialization if not otherwise specified
         /// </summary>
@@ -45,7 +48,7 @@ namespace Penguin.Web
         public T DownloadJson<T>(Uri url, JsonSerializerSettings downloadSerializerSettings = null)
         {
             PreRequest(url);
-            this.Headers[HttpRequestHeader.Accept] = "application/json, text/plain, */*";
+            this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
             return JsonConvert.DeserializeObject<T>(this.DownloadString(url), downloadSerializerSettings ?? DefaultSettings);
         }
 
@@ -66,10 +69,10 @@ namespace Penguin.Web
         /// <param name="toUpload">The pre-serialized object to upload</param>
         /// <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
         /// <returns>The string response from the server</returns>
-        public string UploadJson(Uri url, object toUpload, JsonSerializerSettings uploadSerializerSettings)
+        public string UploadJson(Uri url, object toUpload, JsonSerializerSettings uploadSerializerSettings = null)
         {
             PreRequest(url);
-            this.Headers[HttpRequestHeader.ContentType] = "application/json;charset=UTF-8";
+            this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
             return this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings));
         }
 
@@ -93,11 +96,11 @@ namespace Penguin.Web
         /// <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
         /// <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
         /// <returns>The response, deserialized</returns>
-        public T UploadJson<T>(Uri url, object toUpload, JsonSerializerSettings downloadSerializerSettings, JsonSerializerSettings uploadSerializerSettings)
+        public T UploadJson<T>(Uri url, object toUpload, JsonSerializerSettings downloadSerializerSettings, JsonSerializerSettings uploadSerializerSettings = null)
         {
             PreRequest(url);
-            this.Headers[HttpRequestHeader.Accept] = "application/json, text/plain, */*";
-            this.Headers[HttpRequestHeader.ContentType] = "application/json;charset=UTF-8";
+            this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
+            this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
             return JsonConvert.DeserializeObject<T>(this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings)), downloadSerializerSettings ?? DefaultSettings);
 
         }
