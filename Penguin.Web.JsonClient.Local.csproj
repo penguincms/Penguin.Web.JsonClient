@@ -5,6 +5,8 @@
     <Version>1.0.5</Version>
     <Description>A simple webclient wrapper that serializes and deserializes objects using Newtonsoft.Json</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Penguin.Web.JsonClient</AssemblyName>
+    <RootNamespace>Penguin.Web.JsonClient</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
