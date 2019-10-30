@@ -139,58 +139,8 @@
       "Time": "0001-01-01T00:00:00",
       "Result": null
     },
-    "LocalProjectInfo": null,
-    "Generated": "2019-10-25T23:53:00.0046871-07:00",
-    "Path": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient",
-    "Id": "8f789d6a-02e2-4861-8b1a-47af4b8d44b0"
-  },
-  {
-    "$id": "15",
-    "$type": "Penguin.Management.MetaData, Penguin.Management",
-    "DependencyGraph": {
-      "$id": "16",
-      "$type": "Penguin.Management.Environment.DependencyGraph, Penguin.Management",
-      "lockGraph": {
-        "$type": "System.Object, System.Private.CoreLib"
-      },
-      "_path": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient",
-      "_projectFile": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.csproj",
-      "Dependants": [],
-      "Dependencies": [
-        {
-          "$id": "17",
-          "$type": "Penguin.Management.Environment.DependencyGraph, Penguin.Management",
-          "lockGraph": {
-            "$type": "System.Object, System.Private.CoreLib"
-          },
-          "_path": "C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx",
-          "_projectFile": "C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.csproj",
-          "Dependants": [
-            {
-              "$ref": "16"
-            }
-          ],
-          "Dependencies": [],
-          "Name": "Penguin.Web.WebClientEx"
-        }
-      ],
-      "Name": "Penguin.Web.JsonClient"
-    },
-    "LastBuild": {
-      "$id": "18",
-      "$type": "Penguin.Management.LastBuild, Penguin.Management",
-      "Time": "2019-10-25T11:17:36.9444376-07:00",
-      "Result": {
-        "$id": "19",
-        "$type": "Penguin.Console.ProcessResult, Penguin.Console",
-        "Error": "\r\n",
-        "ExitCode": 0,
-        "Output": "Microsoft (R) Build Engine version 16.3.0+0f4c62fea for .NET Core\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\n\r\n  Restore completed in 144.93 ms for C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.csproj.\r\n  Restore completed in 144.93 ms for C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.Local.csproj.\r\n  Penguin.Web.WebClientEx.Local -> C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\bin\\Release\\netstandard2.0\\Penguin.Web.WebClientEx.Local.dll\r\n  Successfully created package 'C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\bin\\Release\\Penguin.Web.WebClientEx.Local.1.0.0.nupkg'.\r\nC:\\Program Files\\dotnet\\sdk\\3.0.100\\Sdks\\NuGet.Build.Tasks.Pack\\build\\NuGet.Build.Tasks.Pack.targets(198,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.Local.csproj]\r\n  Successfully created package 'C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\bin\\Release\\Penguin.Web.WebClientEx.Local.1.0.0.snupkg'.\r\n  Penguin.Web.JsonClient.Local -> C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\bin\\Release\\netstandard2.0\\Penguin.Web.JsonClient.Local.dll\r\n  Successfully created package 'C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\bin\\Release\\Penguin.Web.JsonClient.Local.1.0.5.nupkg'.\r\nC:\\Program Files\\dotnet\\sdk\\3.0.100\\Sdks\\NuGet.Build.Tasks.Pack\\build\\NuGet.Build.Tasks.Pack.targets(198,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.csproj]\r\n  Successfully created package 'C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\bin\\Release\\Penguin.Web.JsonClient.Local.1.0.5.snupkg'.\r\n\r\nBuild succeeded.\r\n\r\nC:\\Program Files\\dotnet\\sdk\\3.0.100\\Sdks\\NuGet.Build.Tasks.Pack\\build\\NuGet.Build.Tasks.Pack.targets(198,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.Local.csproj]\r\nC:\\Program Files\\dotnet\\sdk\\3.0.100\\Sdks\\NuGet.Build.Tasks.Pack\\build\\NuGet.Build.Tasks.Pack.targets(198,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.csproj]\r\n    2 Warning(s)\r\n    0 Error(s)\r\n\r\nTime Elapsed 00:00:03.56\r\n\r\n",
-        "StreamRead": false
-      }
-    },
     "LocalProjectInfo": {
-      "$id": "20",
+      "$id": "15",
       "$type": "Penguin.Management.Environment.LocalProjectInfo, Penguin.Management",
       "_localProject": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.csproj",
       "_localSLN": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.sln",
@@ -198,15 +148,15 @@
         "..\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.Local.csproj"
       ]
     },
-    "Generated": "2019-10-25T10:28:31.4197809-07:00",
+    "Generated": "2019-10-25T23:53:00.0046871-07:00",
     "Path": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient",
-    "Id": "5b075f44-04ae-43a0-b004-aba8ddd7bb3f"
+    "Id": "8f789d6a-02e2-4861-8b1a-47af4b8d44b0"
   },
   {
-    "$id": "21",
+    "$id": "16",
     "$type": "Penguin.Management.MetaData, Penguin.Management",
     "DependencyGraph": {
-      "$id": "22",
+      "$id": "17",
       "$type": "Penguin.Management.Environment.DependencyGraph, Penguin.Management",
       "lockGraph": {
         "$type": "System.Object, System.Private.CoreLib"
@@ -216,7 +166,7 @@
       "Dependants": [],
       "Dependencies": [
         {
-          "$id": "23",
+          "$id": "18",
           "$type": "Penguin.Management.Environment.DependencyGraph, Penguin.Management",
           "lockGraph": {
             "$type": "System.Object, System.Private.CoreLib"
@@ -225,7 +175,7 @@
           "_projectFile": "C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.csproj",
           "Dependants": [
             {
-              "$ref": "22"
+              "$ref": "17"
             }
           ],
           "Dependencies": [],
@@ -235,10 +185,60 @@
       "Name": "Penguin.Web.JsonClient"
     },
     "LastBuild": {
-      "$id": "24",
+      "$id": "19",
       "$type": "Penguin.Management.LastBuild, Penguin.Management",
       "Time": "0001-01-01T00:00:00",
       "Result": null
+    },
+    "LocalProjectInfo": null,
+    "Generated": "2019-10-25T23:53:00.0046871-07:00",
+    "Path": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient",
+    "Id": "8f789d6a-02e2-4861-8b1a-47af4b8d44b0"
+  },
+  {
+    "$id": "20",
+    "$type": "Penguin.Management.MetaData, Penguin.Management",
+    "DependencyGraph": {
+      "$id": "21",
+      "$type": "Penguin.Management.Environment.DependencyGraph, Penguin.Management",
+      "lockGraph": {
+        "$type": "System.Object, System.Private.CoreLib"
+      },
+      "_path": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient",
+      "_projectFile": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.csproj",
+      "Dependants": [],
+      "Dependencies": [
+        {
+          "$id": "22",
+          "$type": "Penguin.Management.Environment.DependencyGraph, Penguin.Management",
+          "lockGraph": {
+            "$type": "System.Object, System.Private.CoreLib"
+          },
+          "_path": "C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx",
+          "_projectFile": "C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.csproj",
+          "Dependants": [
+            {
+              "$ref": "21"
+            }
+          ],
+          "Dependencies": [],
+          "Name": "Penguin.Web.WebClientEx"
+        }
+      ],
+      "Name": "Penguin.Web.JsonClient"
+    },
+    "LastBuild": {
+      "$id": "23",
+      "$type": "Penguin.Management.LastBuild, Penguin.Management",
+      "Time": "2019-10-25T11:17:36.9444376-07:00",
+      "Result": {
+        "$id": "24",
+        "$type": "Penguin.Console.ProcessResult, Penguin.Console",
+        "Error": "\r\n",
+        "ExitCode": 0,
+        "Output": "Microsoft (R) Build Engine version 16.3.0+0f4c62fea for .NET Core\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\n\r\n  Restore completed in 144.93 ms for C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.csproj.\r\n  Restore completed in 144.93 ms for C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.Local.csproj.\r\n  Penguin.Web.WebClientEx.Local -> C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\bin\\Release\\netstandard2.0\\Penguin.Web.WebClientEx.Local.dll\r\n  Successfully created package 'C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\bin\\Release\\Penguin.Web.WebClientEx.Local.1.0.0.nupkg'.\r\nC:\\Program Files\\dotnet\\sdk\\3.0.100\\Sdks\\NuGet.Build.Tasks.Pack\\build\\NuGet.Build.Tasks.Pack.targets(198,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.Local.csproj]\r\n  Successfully created package 'C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\bin\\Release\\Penguin.Web.WebClientEx.Local.1.0.0.snupkg'.\r\n  Penguin.Web.JsonClient.Local -> C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\bin\\Release\\netstandard2.0\\Penguin.Web.JsonClient.Local.dll\r\n  Successfully created package 'C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\bin\\Release\\Penguin.Web.JsonClient.Local.1.0.5.nupkg'.\r\nC:\\Program Files\\dotnet\\sdk\\3.0.100\\Sdks\\NuGet.Build.Tasks.Pack\\build\\NuGet.Build.Tasks.Pack.targets(198,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.csproj]\r\n  Successfully created package 'C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\bin\\Release\\Penguin.Web.JsonClient.Local.1.0.5.snupkg'.\r\n\r\nBuild succeeded.\r\n\r\nC:\\Program Files\\dotnet\\sdk\\3.0.100\\Sdks\\NuGet.Build.Tasks.Pack\\build\\NuGet.Build.Tasks.Pack.targets(198,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.Local.csproj]\r\nC:\\Program Files\\dotnet\\sdk\\3.0.100\\Sdks\\NuGet.Build.Tasks.Pack\\build\\NuGet.Build.Tasks.Pack.targets(198,5): warning NU5048: The 'PackageIconUrl'/'iconUrl' element is deprecated. Consider using the 'PackageIcon'/'icon' element instead. Learn more at https://aka.ms/deprecateIconUrl [C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.csproj]\r\n    2 Warning(s)\r\n    0 Error(s)\r\n\r\nTime Elapsed 00:00:03.56\r\n\r\n",
+        "StreamRead": false
+      }
     },
     "LocalProjectInfo": {
       "$id": "25",
@@ -409,15 +409,66 @@
   {
     "$id": "41",
     "$type": "Penguin.Management.MetaData, Penguin.Management",
-    "DependencyGraph": null,
-    "LastBuild": {
+    "DependencyGraph": {
       "$id": "42",
+      "$type": "Penguin.Management.Environment.DependencyGraph, Penguin.Management",
+      "lockGraph": {
+        "$type": "System.Object, System.Private.CoreLib"
+      },
+      "_path": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient",
+      "_projectFile": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.csproj",
+      "Dependants": [],
+      "Dependencies": [
+        {
+          "$id": "43",
+          "$type": "Penguin.Management.Environment.DependencyGraph, Penguin.Management",
+          "lockGraph": {
+            "$type": "System.Object, System.Private.CoreLib"
+          },
+          "_path": "C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx",
+          "_projectFile": "C:\\Penguin\\Repositories\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.csproj",
+          "Dependants": [
+            {
+              "$ref": "42"
+            }
+          ],
+          "Dependencies": [],
+          "Name": "Penguin.Web.WebClientEx"
+        }
+      ],
+      "Name": "Penguin.Web.JsonClient"
+    },
+    "LastBuild": {
+      "$id": "44",
       "$type": "Penguin.Management.LastBuild, Penguin.Management",
       "Time": "0001-01-01T00:00:00",
       "Result": null
     },
     "LocalProjectInfo": {
-      "$id": "43",
+      "$id": "45",
+      "$type": "Penguin.Management.Environment.LocalProjectInfo, Penguin.Management",
+      "_localProject": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.csproj",
+      "_localSLN": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.sln",
+      "LocalReferences": [
+        "..\\Penguin.Web.WebClientEx\\Penguin.Web.WebClientEx.Local.csproj"
+      ]
+    },
+    "Generated": "2019-10-25T10:28:31.4197809-07:00",
+    "Path": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient",
+    "Id": "5b075f44-04ae-43a0-b004-aba8ddd7bb3f"
+  },
+  {
+    "$id": "46",
+    "$type": "Penguin.Management.MetaData, Penguin.Management",
+    "DependencyGraph": null,
+    "LastBuild": {
+      "$id": "47",
+      "$type": "Penguin.Management.LastBuild, Penguin.Management",
+      "Time": "0001-01-01T00:00:00",
+      "Result": null
+    },
+    "LocalProjectInfo": {
+      "$id": "48",
       "$type": "Penguin.Management.Environment.LocalProjectInfo, Penguin.Management",
       "_localProject": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.csproj",
       "_localSLN": "C:\\Penguin\\Repositories\\Penguin.Web.JsonClient\\Penguin.Web.JsonClient.Local.sln",
