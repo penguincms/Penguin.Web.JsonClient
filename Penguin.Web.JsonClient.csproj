@@ -7,6 +7,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Penguin.Web.JsonClient</AssemblyName>
     <RootNamespace>Penguin.Web.JsonClient</RootNamespace>
+    <DocumentationFile>Penguin.Web.JsonClient.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
