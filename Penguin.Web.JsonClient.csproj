@@ -11,6 +11,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Penguin.Web.WebClientEx" Version="1.0.1-T9UCQO9" />
+    <PackageReference Include="Penguin.Web.WebClientEx" Version="1.0.1-T9UFJ6O" />
   </ItemGroup>
 </Project>
