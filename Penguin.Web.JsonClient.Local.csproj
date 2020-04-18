@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="Penguin.Projects.Shared\Penguin.Projects.Shared.csproj" />
+  <PropertyGroup>
+    <PackageProjectUrl>https://github.com/penguincms/Penguin.Web.JsonClient</PackageProjectUrl>
+    <Version>1.0.5</Version>
+    <Description>A simple webclient wrapper that serializes and deserializes objects using Newtonsoft.Json</Description>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Penguin.Web.JsonClient</AssemblyName>
+    <RootNamespace>Penguin.Web.JsonClient</RootNamespace>
+    <DocumentationFile>Penguin.Web.JsonClient.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <ProjectReference Include="..\Penguin.Extensions.String\Penguin.Extensions.String.Local.csproj" />
+    <ProjectReference Include="..\Penguin.Web.WebClientEx\Penguin.Web.WebClientEx.Local.csproj" />
+  </ItemGroup>
+</Project>
