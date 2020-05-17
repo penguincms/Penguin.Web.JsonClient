@@ -149,10 +149,17 @@ namespace Penguin.Web
         /// <returns>The response, deserialized</returns>
         public virtual T UploadJson<T>(Uri url, object toUpload, JsonSerializerSettings downloadSerializerSettings = null, JsonSerializerSettings uploadSerializerSettings = null)
         {
+            string postBody = "";
+
+            if(!(toUpload is null))
+            {
+                postBody = JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings);
+            }
+
             PreRequest(url);
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
             this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
-            return JsonConvert.DeserializeObject<T>(this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings)), downloadSerializerSettings ?? DefaultSettings);
+            return JsonConvert.DeserializeObject<T>(this.UploadString(url, postBody), downloadSerializerSettings ?? DefaultSettings);
         }
 
         /// <summary>
