@@ -11,13 +11,14 @@ namespace Penguin.Web
     /// </summary>
     public class JsonClient : WebClientEx
     {
+        private const string ACCEPT_CONTENTTYPE = "application/json, text/plain, */*";
+
+        private const string CONTENTTYPE = "application/json;charset=UTF-8";
+
         /// <summary>
         /// The default settings to use for serialization/deserialization if not otherwise specified
         /// </summary>
         public JsonSerializerSettings DefaultSettings { get; protected set; }
-
-        private const string ACCEPT_CONTENTTYPE = "application/json, text/plain, */*";
-        private const string CONTENTTYPE = "application/json;charset=UTF-8";
 
         /// <summary>
         /// Constructs a new instance of the serializing web client
@@ -49,6 +50,25 @@ namespace Penguin.Web
             PreRequest(url);
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
             return JsonConvert.DeserializeObject<T>(this.DownloadString(url), downloadSerializerSettings ?? DefaultSettings);
+        }
+
+        /// <summary>
+        /// Downloads the Uri as a string
+        /// </summary>
+        /// <param name="address">The Uri to download</param>
+        /// <returns>The response as a string</returns>
+        public virtual new string DownloadString(string address) => this.DownloadString(new Uri(address));
+
+        /// <summary>
+        /// Downloads the Uri as a string
+        /// </summary>
+        /// <param name="address">The Uri to download</param>
+        /// <returns>The response as a string</returns>
+        public virtual new string DownloadString(Uri address)
+        {
+            PreRequest(address);
+
+            return base.DownloadString(address);
         }
 
         /// <summary>
@@ -151,7 +171,7 @@ namespace Penguin.Web
         {
             string postBody = "";
 
-            if(!(toUpload is null))
+            if (!(toUpload is null))
             {
                 postBody = JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings);
             }
@@ -160,6 +180,27 @@ namespace Penguin.Web
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
             this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
             return JsonConvert.DeserializeObject<T>(this.UploadString(url, postBody), downloadSerializerSettings ?? DefaultSettings);
+        }
+
+        /// <summary>
+        /// Posts the provided body and downloads the Uri as a string
+        /// </summary>
+        /// <param name="address">The Uri to download</param>
+        /// <param name="body">The content to post in the body</param>
+        /// <returns>The response as a string</returns>
+        public virtual new string UploadString(string address, string body) => this.UploadString(new Uri(address), body);
+
+        /// <summary>
+        /// Posts the provided body and downloads the Uri as a string
+        /// </summary>
+        /// <param name="address">The Uri to download</param>
+        /// <param name="body">The content to post in the body</param>
+        /// <returns>The response as a string</returns>
+        public virtual new string UploadString(Uri address, string body)
+        {
+            PreRequest(address);
+
+            return base.UploadString(address, body);
         }
 
         /// <summary>

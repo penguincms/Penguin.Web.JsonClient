@@ -38,6 +38,20 @@
             <param name="downloadSerializerSettings">The serializer settings to use when deserializing the response</param>
             <returns>The deserialized response</returns>
         </member>
+        <member name="M:Penguin.Web.JsonClient.DownloadString(System.String)">
+            <summary>
+            Downloads the Uri as a string
+            </summary>
+            <param name="address">The Uri to download</param>
+            <returns>The response as a string</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.DownloadString(System.Uri)">
+            <summary>
+            Downloads the Uri as a string
+            </summary>
+            <param name="address">The Uri to download</param>
+            <returns>The response as a string</returns>
+        </member>
         <member name="M:Penguin.Web.JsonClient.PatchJson(System.String,System.Object,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
             Upload string, but with Json. Uses the PATCH method
@@ -117,6 +131,22 @@
             <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
             <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
             <returns>The response, deserialized</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.UploadString(System.String,System.String)">
+            <summary>
+            Posts the provided body and downloads the Uri as a string
+            </summary>
+            <param name="address">The Uri to download</param>
+            <param name="body">The content to post in the body</param>
+            <returns>The response as a string</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.UploadString(System.Uri,System.String)">
+            <summary>
+            Posts the provided body and downloads the Uri as a string
+            </summary>
+            <param name="address">The Uri to download</param>
+            <param name="body">The content to post in the body</param>
+            <returns>The response as a string</returns>
         </member>
         <member name="M:Penguin.Web.JsonClient.PreRequest(System.Uri)">
             <summary>
