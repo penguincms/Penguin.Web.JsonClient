@@ -38,20 +38,6 @@
             <param name="downloadSerializerSettings">The serializer settings to use when deserializing the response</param>
             <returns>The deserialized response</returns>
         </member>
-        <member name="M:Penguin.Web.JsonClient.DownloadString(System.String)">
-            <summary>
-            Downloads the Uri as a string
-            </summary>
-            <param name="address">The Uri to download</param>
-            <returns>The response as a string</returns>
-        </member>
-        <member name="M:Penguin.Web.JsonClient.DownloadString(System.Uri)">
-            <summary>
-            Downloads the Uri as a string
-            </summary>
-            <param name="address">The Uri to download</param>
-            <returns>The response as a string</returns>
-        </member>
         <member name="M:Penguin.Web.JsonClient.PatchJson(System.String,System.Object,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
             Upload string, but with Json. Uses the PATCH method
@@ -132,6 +118,26 @@
             <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
             <returns>The response, deserialized</returns>
         </member>
+        <member name="M:Penguin.Web.JsonClient.PreRequest(System.Uri)">
+            <summary>
+            Gets called before each request is made incase there is code that needs to be run each time
+            </summary>
+            <param name="url">The URL being requested</param>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.DownloadString(System.String)">
+            <summary>
+            Downloads the Uri as a string
+            </summary>
+            <param name="address">The Uri to download</param>
+            <returns>The response as a string</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.DownloadString(System.Uri)">
+            <summary>
+            Downloads the Uri as a string
+            </summary>
+            <param name="address">The Uri to download</param>
+            <returns>The response as a string</returns>
+        </member>
         <member name="M:Penguin.Web.JsonClient.UploadString(System.String,System.String)">
             <summary>
             Posts the provided body and downloads the Uri as a string
@@ -148,11 +154,21 @@
             <param name="body">The content to post in the body</param>
             <returns>The response as a string</returns>
         </member>
-        <member name="M:Penguin.Web.JsonClient.PreRequest(System.Uri)">
+        <member name="M:Penguin.Web.JsonClient.UploadString``1(System.String,System.String)">
             <summary>
-            Gets called before each request is made incase there is code that needs to be run each time
+            Posts the provided body and downloads the Uri as a string
             </summary>
-            <param name="url">The URL being requested</param>
+            <param name="address">The Uri to download</param>
+            <param name="body">The content to post in the body</param>
+            <returns>The response as a string</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.UploadString``1(System.Uri,System.String)">
+            <summary>
+            Posts the provided body and downloads the Uri as a string
+            </summary>
+            <param name="address">The Uri to download</param>
+            <param name="body">The content to post in the body</param>
+            <returns>The response as a string</returns>
         </member>
     </members>
 </doc>

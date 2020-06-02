@@ -9,7 +9,7 @@ namespace Penguin.Web
     /// <summary>
     /// WebClient with options to upload/download objects by converting to/from Json, for Json endpoints. Use "UploadJson" and "DownloadJson"
     /// </summary>
-    public class JsonClient : WebClientEx
+    public partial class JsonClient : WebClientEx
     {
         private const string ACCEPT_CONTENTTYPE = "application/json, text/plain, */*";
 
@@ -47,28 +47,9 @@ namespace Penguin.Web
         /// <returns>The deserialized response</returns>
         public virtual T DownloadJson<T>(Uri url, JsonSerializerSettings downloadSerializerSettings = null)
         {
-            PreRequest(url);
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
+            PreRequest(url);
             return JsonConvert.DeserializeObject<T>(this.DownloadString(url), downloadSerializerSettings ?? DefaultSettings);
-        }
-
-        /// <summary>
-        /// Downloads the Uri as a string
-        /// </summary>
-        /// <param name="address">The Uri to download</param>
-        /// <returns>The response as a string</returns>
-        public virtual new string DownloadString(string address) => this.DownloadString(new Uri(address));
-
-        /// <summary>
-        /// Downloads the Uri as a string
-        /// </summary>
-        /// <param name="address">The Uri to download</param>
-        /// <returns>The response as a string</returns>
-        public virtual new string DownloadString(Uri address)
-        {
-            PreRequest(address);
-
-            return base.DownloadString(address);
         }
 
         /// <summary>
@@ -89,9 +70,9 @@ namespace Penguin.Web
         /// <returns>The string response from the server</returns>
         public virtual string PatchJson(Uri url, object toUpload, JsonSerializerSettings uploadSerializerSettings = null)
         {
-            PreRequest(url);
             this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
+            PreRequest(url);
             return this.UploadString(url, "PATCH", JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings));
         }
 
@@ -117,9 +98,9 @@ namespace Penguin.Web
         /// <returns>The response, deserialized</returns>
         public virtual T PatchJson<T>(Uri url, object toUpload, JsonSerializerSettings downloadSerializerSettings = null, JsonSerializerSettings uploadSerializerSettings = null)
         {
-            PreRequest(url);
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
             this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
+            PreRequest(url);
             return JsonConvert.DeserializeObject<T>(this.UploadString(url, "PATCH", JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings)), downloadSerializerSettings ?? DefaultSettings);
         }
 
@@ -141,9 +122,9 @@ namespace Penguin.Web
         /// <returns>The string response from the server</returns>
         public virtual string UploadJson(Uri url, object toUpload, JsonSerializerSettings uploadSerializerSettings = null)
         {
-            PreRequest(url);
             this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
+            PreRequest(url);
             return this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings));
         }
 
@@ -176,31 +157,10 @@ namespace Penguin.Web
                 postBody = JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings);
             }
 
-            PreRequest(url);
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
             this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
+            PreRequest(url);
             return JsonConvert.DeserializeObject<T>(this.UploadString(url, postBody), downloadSerializerSettings ?? DefaultSettings);
-        }
-
-        /// <summary>
-        /// Posts the provided body and downloads the Uri as a string
-        /// </summary>
-        /// <param name="address">The Uri to download</param>
-        /// <param name="body">The content to post in the body</param>
-        /// <returns>The response as a string</returns>
-        public virtual new string UploadString(string address, string body) => this.UploadString(new Uri(address), body);
-
-        /// <summary>
-        /// Posts the provided body and downloads the Uri as a string
-        /// </summary>
-        /// <param name="address">The Uri to download</param>
-        /// <param name="body">The content to post in the body</param>
-        /// <returns>The response as a string</returns>
-        public virtual new string UploadString(Uri address, string body)
-        {
-            PreRequest(address);
-
-            return base.UploadString(address, body);
         }
 
         /// <summary>

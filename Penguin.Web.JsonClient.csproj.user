@@ -5,5 +5,11 @@
     <Compile Update="JsonClient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="JsonClient.DownloadString.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="JsonClient.UploadString.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
