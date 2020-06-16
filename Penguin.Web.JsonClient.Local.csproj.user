@@ -8,6 +8,9 @@
     <Compile Update="JsonClient.DownloadString.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="JsonClient.PatchJson.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="JsonClient.UploadString.cs">
       <SubType>Component</SubType>
     </Compile>

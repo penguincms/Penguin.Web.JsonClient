@@ -38,46 +38,6 @@
             <param name="downloadSerializerSettings">The serializer settings to use when deserializing the response</param>
             <returns>The deserialized response</returns>
         </member>
-        <member name="M:Penguin.Web.JsonClient.PatchJson(System.String,System.Object,Newtonsoft.Json.JsonSerializerSettings)">
-            <summary>
-            Upload string, but with Json. Uses the PATCH method
-            </summary>
-            <param name="url">The url to post to</param>
-            <param name="toUpload">The pre-serialized object to upload</param>
-            <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
-            <returns>The string response from the server</returns>
-        </member>
-        <member name="M:Penguin.Web.JsonClient.PatchJson(System.Uri,System.Object,Newtonsoft.Json.JsonSerializerSettings)">
-            <summary>
-            Upload string, but with Json. Uses the PATCH method
-            </summary>
-            <param name="url">The url to post to</param>
-            <param name="toUpload">The pre-serialized object to upload</param>
-            <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
-            <returns>The string response from the server</returns>
-        </member>
-        <member name="M:Penguin.Web.JsonClient.PatchJson``1(System.String,System.Object,Newtonsoft.Json.JsonSerializerSettings,Newtonsoft.Json.JsonSerializerSettings)">
-            <summary>
-            Upload string, but with Json. Uses the PATCH method
-            </summary>
-            <typeparam name="T">the type to deserialize the response to</typeparam>
-            <param name="url">The url to post to</param>
-            <param name="toUpload">The pre-serialized object to upload</param>
-            <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
-            <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
-            <returns>The response, deserialized</returns>
-        </member>
-        <member name="M:Penguin.Web.JsonClient.PatchJson``1(System.Uri,System.Object,Newtonsoft.Json.JsonSerializerSettings,Newtonsoft.Json.JsonSerializerSettings)">
-            <summary>
-            Upload string, but with Json. Uses the PATCH method
-            </summary>
-            <typeparam name="T">the type to deserialize the response to</typeparam>
-            <param name="url">The url to post to</param>
-            <param name="toUpload">The pre-serialized object to upload</param>
-            <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
-            <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
-            <returns>The response, deserialized</returns>
-        </member>
         <member name="M:Penguin.Web.JsonClient.UploadJson(System.String,System.Object,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
             Upload string, but with Json
@@ -137,6 +97,86 @@
             </summary>
             <param name="address">The Uri to download</param>
             <returns>The response as a string</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.PatchJson(System.String,System.Object,Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Upload string, but with Json. Uses the PATCH method
+            </summary>
+            <param name="url">The url to post to</param>
+            <param name="toUpload">The pre-serialized object to upload</param>
+            <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
+            <returns>The string response from the server</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.PatchJson(System.Uri,System.Object,Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Upload string, but with Json. Uses the PATCH method
+            </summary>
+            <param name="url">The url to post to</param>
+            <param name="toUpload">The pre-serialized object to upload</param>
+            <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
+            <returns>The string response from the server</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.PatchJson``1(System.String,System.Object,Newtonsoft.Json.JsonSerializerSettings,Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Upload string, but with Json. Uses the PATCH method
+            </summary>
+            <typeparam name="T">the type to deserialize the response to</typeparam>
+            <param name="url">The url to post to</param>
+            <param name="toUpload">The pre-serialized object to upload</param>
+            <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
+            <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
+            <returns>The response, deserialized</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.PatchJson``1(System.Uri,System.Object,Newtonsoft.Json.JsonSerializerSettings,Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Upload string, but with Json. Uses the PATCH method
+            </summary>
+            <typeparam name="T">the type to deserialize the response to</typeparam>
+            <param name="url">The url to post to</param>
+            <param name="toUpload">The pre-serialized object to upload</param>
+            <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
+            <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
+            <returns>The response, deserialized</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.PutJson(System.String,System.Object,Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Upload string, but with Json. Uses the PUT method
+            </summary>
+            <param name="url">The url to post to</param>
+            <param name="toUpload">The pre-serialized object to upload</param>
+            <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
+            <returns>The string response from the server</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.PutJson(System.Uri,System.Object,Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Upload string, but with Json. Uses the PUT method
+            </summary>
+            <param name="url">The url to post to</param>
+            <param name="toUpload">The pre-serialized object to upload</param>
+            <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
+            <returns>The string response from the server</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.PutJson``1(System.String,System.Object,Newtonsoft.Json.JsonSerializerSettings,Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Upload string, but with Json. Uses the PUT method
+            </summary>
+            <typeparam name="T">the type to deserialize the response to</typeparam>
+            <param name="url">The url to post to</param>
+            <param name="toUpload">The pre-serialized object to upload</param>
+            <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
+            <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
+            <returns>The response, deserialized</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.PutJson``1(System.Uri,System.Object,Newtonsoft.Json.JsonSerializerSettings,Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Upload string, but with Json. Uses the PUT method
+            </summary>
+            <typeparam name="T">the type to deserialize the response to</typeparam>
+            <param name="url">The url to post to</param>
+            <param name="toUpload">The pre-serialized object to upload</param>
+            <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
+            <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
+            <returns>The response, deserialized</returns>
         </member>
         <member name="M:Penguin.Web.JsonClient.UploadString(System.String,System.String)">
             <summary>
