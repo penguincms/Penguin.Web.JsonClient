@@ -67,7 +67,32 @@ namespace Penguin.Web
             return JsonConvert.DeserializeObject<T>(this.DownloadString(url), downloadSerializerSettings ?? DefaultSettings);
         }
 
+        /// <summary>
+        /// Upload string, but with Json
+        /// </summary>
+        /// <typeparam name="T">the type to deserialize the response to</typeparam>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The pre-serialized object to upload</param>
+        /// <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
+        /// <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
+        /// <returns>The response, deserialized</returns>
+        public virtual T UploadJson<T>(string url, string toUpload, JsonSerializerSettings downloadSerializerSettings = null) => UploadJson<T>(new Uri(url), toUpload, downloadSerializerSettings);
 
+        /// <summary>
+        /// Upload string, but with Json
+        /// </summary>
+        /// <typeparam name="T">the type to deserialize the response to</typeparam>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The pre-serialized object to upload</param>
+        /// <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
+        /// <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
+        /// <returns>The response, deserialized</returns>
+        public virtual T UploadJson<T>(Uri url, string toUpload, JsonSerializerSettings downloadSerializerSettings = null)
+        {
+            this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
+            PreRequest(url);
+            return JsonConvert.DeserializeObject<T>(this.UploadString(url, toUpload), downloadSerializerSettings ?? DefaultSettings);
+        }
 
         /// <summary>
         /// Upload string, but with Json
