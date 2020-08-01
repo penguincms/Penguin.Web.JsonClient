@@ -150,7 +150,10 @@ namespace Penguin.Web
             this.Headers[HttpRequestHeader.Accept] = ACCEPT_CONTENTTYPE;
             this.Headers[HttpRequestHeader.ContentType] = CONTENTTYPE;
             PreRequest(url);
-            return JsonConvert.DeserializeObject<T>(this.UploadString(url, postBody), downloadSerializerSettings ?? DefaultSettings);
+
+            string response = this.UploadString(url, postBody);
+
+            return JsonConvert.DeserializeObject<T>(response, downloadSerializerSettings ?? DefaultSettings);
         }
 
         /// <summary>
