@@ -25,6 +25,11 @@
             </summary>
             <param name="jsonSerializerSettings">The default settings to use for serialization/deserialization if not otherwise specified </param>
         </member>
+        <member name="M:Penguin.Web.JsonClient.#ctor">
+            <summary>
+            Constructs a new instance of the serializing web client
+            </summary>
+        </member>
         <member name="M:Penguin.Web.JsonClient.DownloadJson``1(System.String,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
             Download string but with Json

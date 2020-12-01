@@ -29,20 +29,19 @@ namespace Penguin.Web
         /// Constructs a new instance of the serializing web client
         /// </summary>
         /// <param name="jsonSerializerSettings">The default settings to use for serialization/deserialization if not otherwise specified </param>
-        public JsonClient(JsonSerializerSettings jsonSerializerSettings = null)
-        {
-            if (jsonSerializerSettings is null)
-            {
-                jsonSerializerSettings = new JsonSerializerSettings
-                {
-                    Converters = new List<JsonConverter>()
-                    {
-                        new ConditionalValueConverter()
-                    }
-                };
-            }
+        public JsonClient(JsonSerializerSettings jsonSerializerSettings) => this.DefaultSettings = jsonSerializerSettings;
 
-            this.DefaultSettings = jsonSerializerSettings;
+        /// <summary>
+        /// Constructs a new instance of the serializing web client
+        /// </summary>
+        public JsonClient() : this(new JsonSerializerSettings
+        {
+            Converters = new List<JsonConverter>()
+            {
+                new ConditionalValueConverter()
+            }
+        })
+        {
         }
 
         /// <summary>
