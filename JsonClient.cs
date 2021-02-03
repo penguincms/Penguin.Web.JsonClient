@@ -80,6 +80,29 @@ namespace Penguin.Web
         /// <summary>
         /// Upload string, but with Json
         /// </summary>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The serialized object to upload</param>
+        /// <returns>The response, deserialized</returns>
+        public virtual string UploadJson(string url, string toUpload) => this.UploadJson(new Uri(url), toUpload);
+
+        /// <summary>
+        /// Upload string, but with Json
+        /// </summary>
+        /// <param name="url">The url to post to</param>
+        /// <param name="toUpload">The serialized object to upload</param>
+        /// <returns>The response, deserialized</returns>
+        public virtual string UploadJson(Uri url, string toUpload)
+        {
+            this.Headers[HttpRequestHeader.ContentType] = this.JsonContentType;
+            this.Headers[HttpRequestHeader.Accept] = this.JsonAcceptContentType;
+            this.PreRequest(url);
+            return this.UploadString(url, toUpload);
+        }
+
+
+        /// <summary>
+        /// Upload string, but with Json
+        /// </summary>
         /// <typeparam name="T">the type to deserialize the response to</typeparam>
         /// <param name="url">The url to post to</param>
         /// <param name="toUpload">The pre-serialized object to upload</param>

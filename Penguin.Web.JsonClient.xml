@@ -58,6 +58,22 @@
             <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
             <returns>The response, deserialized</returns>
         </member>
+        <member name="M:Penguin.Web.JsonClient.UploadJson(System.String,System.String)">
+            <summary>
+            Upload string, but with Json
+            </summary>
+            <param name="url">The url to post to</param>
+            <param name="toUpload">The serialized object to upload</param>
+            <returns>The response, deserialized</returns>
+        </member>
+        <member name="M:Penguin.Web.JsonClient.UploadJson(System.Uri,System.String)">
+            <summary>
+            Upload string, but with Json
+            </summary>
+            <param name="url">The url to post to</param>
+            <param name="toUpload">The serialized object to upload</param>
+            <returns>The response, deserialized</returns>
+        </member>
         <member name="M:Penguin.Web.JsonClient.UploadJson``1(System.Uri,System.String,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
             Upload string, but with Json

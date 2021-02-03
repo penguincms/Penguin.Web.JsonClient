@@ -11,6 +11,9 @@
     <Compile Update="JsonClient.PatchJson.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="JsonClient.PutJson.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="JsonClient.UploadString.cs">
       <SubType>Component</SubType>
     </Compile>
