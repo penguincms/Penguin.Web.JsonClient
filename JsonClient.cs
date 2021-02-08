@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Penguin.Json.JsonConverters;
+using Penguin.Web.Http;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -44,6 +45,29 @@ namespace Penguin.Web
         {
         }
 
+        /// <summary>
+        /// Uploads an HttpQuery object and returns a JsonObject
+        /// </summary>
+        /// <typeparam name="TReturn">The return type of the post</typeparam>
+        /// <param name="url">The url to post to</param>
+        /// <param name="query">The query object to upload</param>
+        /// <returns>A JsonObject representation of the return</returns>
+        public TReturn UploadHttpQuery<TReturn>(string url, HttpQuery query)
+        {
+            this.Headers[HttpRequestHeader.ContentType] = this.FormContentType;
+
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                throw new ArgumentException($"'{nameof(url)}' cannot be null or whitespace.", nameof(url));
+            }
+
+            if (query is null)
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+
+            return this.UploadJson<TReturn>(new Uri(url), query.ToString());
+        }
         /// <summary>
         /// Download string but with Json
         /// </summary>
@@ -183,6 +207,11 @@ namespace Penguin.Web
         /// <param name="url">The URL being requested</param>
         protected virtual void PreRequest(Uri url)
         {
+        }
+
+        public TReturn UploadHttpQuery<TReturn>(Uri url, HttpQuery query)
+        {
+            throw new NotImplementedException();
         }
     }
 }
