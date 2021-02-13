@@ -46,6 +46,29 @@ namespace Penguin.Web
         }
 
         /// <summary>
+        /// Download string but with Json
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize the response into</typeparam>
+        /// <param name="url">The url to download</param>
+        /// <param name="downloadSerializerSettings">The serializer settings to use when deserializing the response</param>
+        /// <returns>The deserialized response</returns>
+        public virtual T DownloadJson<T>(string url, JsonSerializerSettings downloadSerializerSettings = null) => this.DownloadJson<T>(new Uri(url), downloadSerializerSettings);
+
+        /// <summary>
+        /// Download string but with Json
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize the response into</typeparam>
+        /// <param name="url">The url to download</param>
+        /// <param name="downloadSerializerSettings">The serializer settings to use when deserializing the response</param>
+        /// <returns>The deserialized response</returns>
+        public virtual T DownloadJson<T>(Uri url, JsonSerializerSettings downloadSerializerSettings = null)
+        {
+            this.Headers[HttpRequestHeader.Accept] = this.JsonAcceptContentType;
+            this.PreRequest(url);
+            return JsonConvert.DeserializeObject<T>(this.DownloadString(url), downloadSerializerSettings ?? this.DefaultSettings);
+        }
+
+        /// <summary>
         /// Uploads an HttpQuery object and returns a JsonObject
         /// </summary>
         /// <typeparam name="TReturn">The return type of the post</typeparam>
@@ -68,28 +91,8 @@ namespace Penguin.Web
 
             return this.UploadJson<TReturn>(new Uri(url), query.ToString());
         }
-        /// <summary>
-        /// Download string but with Json
-        /// </summary>
-        /// <typeparam name="T">The type to deserialize the response into</typeparam>
-        /// <param name="url">The url to download</param>
-        /// <param name="downloadSerializerSettings">The serializer settings to use when deserializing the response</param>
-        /// <returns>The deserialized response</returns>
-        public virtual T DownloadJson<T>(string url, JsonSerializerSettings downloadSerializerSettings = null) => this.DownloadJson<T>(new Uri(url), downloadSerializerSettings);
 
-        /// <summary>
-        /// Download string but with Json
-        /// </summary>
-        /// <typeparam name="T">The type to deserialize the response into</typeparam>
-        /// <param name="url">The url to download</param>
-        /// <param name="downloadSerializerSettings">The serializer settings to use when deserializing the response</param>
-        /// <returns>The deserialized response</returns>
-        public virtual T DownloadJson<T>(Uri url, JsonSerializerSettings downloadSerializerSettings = null)
-        {
-            this.Headers[HttpRequestHeader.Accept] = this.JsonAcceptContentType;
-            this.PreRequest(url);
-            return JsonConvert.DeserializeObject<T>(this.DownloadString(url), downloadSerializerSettings ?? this.DefaultSettings);
-        }
+        public TReturn UploadHttpQuery<TReturn>(Uri url, HttpQuery query) => throw new NotImplementedException();
 
         /// <summary>
         /// Upload string, but with Json
@@ -122,7 +125,6 @@ namespace Penguin.Web
             this.PreRequest(url);
             return this.UploadString(url, toUpload);
         }
-
 
         /// <summary>
         /// Upload string, but with Json
@@ -207,11 +209,6 @@ namespace Penguin.Web
         /// <param name="url">The URL being requested</param>
         protected virtual void PreRequest(Uri url)
         {
-        }
-
-        public TReturn UploadHttpQuery<TReturn>(Uri url, HttpQuery query)
-        {
-            throw new NotImplementedException();
         }
     }
 }
