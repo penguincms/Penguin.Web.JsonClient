@@ -30,7 +30,12 @@ namespace Penguin.Web
         /// Constructs a new instance of the serializing web client
         /// </summary>
         /// <param name="jsonSerializerSettings">The default settings to use for serialization/deserialization if not otherwise specified </param>
-        public JsonClient(JsonSerializerSettings jsonSerializerSettings) => this.DefaultSettings = jsonSerializerSettings;
+        public JsonClient(JsonSerializerSettings jsonSerializerSettings)
+        {
+            this.DefaultSettings = jsonSerializerSettings;
+
+            this.DefaultSettings.Converters.Add(new IJsonPopulatedObjectConverter(true));
+        }
 
         /// <summary>
         /// Constructs a new instance of the serializing web client
@@ -65,6 +70,7 @@ namespace Penguin.Web
         {
             this.Headers[HttpRequestHeader.Accept] = this.JsonAcceptContentType;
             this.PreRequest(url);
+
             return JsonConvert.DeserializeObject<T>(this.DownloadString(url), downloadSerializerSettings ?? this.DefaultSettings);
         }
 
