@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="Penguin.Projects.Shared\Penguin.Projects.Shared.csproj" />
   <PropertyGroup>
-    <PackageProjectUrl>https://github.com/penguincms/Penguin.Web.JsonClient</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/PenguinCMS/Penguin.Web.JsonClient</PackageProjectUrl>
     <Version>5.0.5</Version>
     <Description>A simple webclient wrapper that serializes and deserializes objects using Newtonsoft.Json</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -14,6 +14,7 @@
     <ProjectReference Include="..\Penguin.Debugging\Penguin.Debugging.Local.csproj" />
     <ProjectReference Include="..\Penguin.Extensions.Exceptions\Penguin.Extensions.Exceptions.Local.csproj" />
     <ProjectReference Include="..\Penguin.Extensions.String\Penguin.Extensions.String.Local.csproj" />
+    <ProjectReference Include="..\Penguin.FileStreams\Penguin.FileStreams.Local.csproj" />
     <ProjectReference Include="..\Penguin.Json\Penguin.Json.Local.csproj" />
     <ProjectReference Include="..\Penguin.Json.Abstractions\Penguin.Json.Abstractions.Local.csproj" />
     <ProjectReference Include="..\Penguin.Reflection\Penguin.Reflection.Local.csproj" />

@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Penguin.Json.JsonConverters;
 using Penguin.Web.Http;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using JsonConvert = Penguin.Json.JsonConvert;
 
@@ -32,10 +34,19 @@ namespace Penguin.Web
         /// <param name="jsonSerializerSettings">The default settings to use for serialization/deserialization if not otherwise specified </param>
         public JsonClient(JsonSerializerSettings jsonSerializerSettings)
         {
-            this.DefaultSettings = jsonSerializerSettings;
+            this.DefaultSettings = jsonSerializerSettings ?? throw new ArgumentNullException(nameof(jsonSerializerSettings));
 
-            this.DefaultSettings.Converters.Add(new IJsonPopulatedObjectConverter(true));
+            lock (threadSafetyLock)
+            {
+                if (!this.DefaultSettings.Converters.OfType<IJsonPopulatedObjectConverter>().Any())
+                {
+                    this.DefaultSettings.Converters.Add(new IJsonPopulatedObjectConverter(true));
+                }
+            }
         }
+
+        private readonly static object threadSafetyLock = new object();
+
 
         /// <summary>
         /// Constructs a new instance of the serializing web client
