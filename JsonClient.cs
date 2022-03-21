@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Penguin.Json.JsonConverters;
 using Penguin.Web.Http;
@@ -46,7 +46,6 @@ namespace Penguin.Web
         }
 
         private readonly static object threadSafetyLock = new object();
-
 
         /// <summary>
         /// Constructs a new instance of the serializing web client
