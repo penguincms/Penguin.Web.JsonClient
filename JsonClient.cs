@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Penguin.Json.JsonConverters;
 using Penguin.Web.Http;
 using System;
@@ -15,6 +14,8 @@ namespace Penguin.Web
     /// </summary>
     public partial class JsonClient : WebClientEx
     {
+        private static readonly object threadSafetyLock = new object();
+
         /// <summary>
         /// The default settings to use for serialization/deserialization if not otherwise specified
         /// </summary>
@@ -25,8 +26,9 @@ namespace Penguin.Web
         /// </summary>
         public bool ODataVerbose { get; set; }
 
-        private string JsonAcceptContentType => !this.ODataVerbose ? "application/json, text/plain, */*" : "application/json;odata=verbose";
-        private string JsonContentType => !this.ODataVerbose ? "application/json;charset=UTF-8" : "application/json;odata=verbose";
+        private string JsonAcceptContentType => !ODataVerbose ? "application/json, text/plain, */*" : "application/json;odata=verbose";
+
+        private string JsonContentType => !ODataVerbose ? "application/json;charset=UTF-8" : "application/json;odata=verbose";
 
         /// <summary>
         /// Constructs a new instance of the serializing web client
@@ -34,18 +36,16 @@ namespace Penguin.Web
         /// <param name="jsonSerializerSettings">The default settings to use for serialization/deserialization if not otherwise specified </param>
         public JsonClient(JsonSerializerSettings jsonSerializerSettings)
         {
-            this.DefaultSettings = jsonSerializerSettings ?? throw new ArgumentNullException(nameof(jsonSerializerSettings));
+            DefaultSettings = jsonSerializerSettings ?? throw new ArgumentNullException(nameof(jsonSerializerSettings));
 
             lock (threadSafetyLock)
             {
-                if (!this.DefaultSettings.Converters.OfType<IJsonPopulatedObjectConverter>().Any())
+                if (!DefaultSettings.Converters.OfType<IJsonPopulatedObjectConverter>().Any())
                 {
-                    this.DefaultSettings.Converters.Add(new IJsonPopulatedObjectConverter(true));
+                    DefaultSettings.Converters.Add(new IJsonPopulatedObjectConverter(true));
                 }
             }
         }
-
-        private readonly static object threadSafetyLock = new object();
 
         /// <summary>
         /// Constructs a new instance of the serializing web client
@@ -67,7 +67,10 @@ namespace Penguin.Web
         /// <param name="url">The url to download</param>
         /// <param name="downloadSerializerSettings">The serializer settings to use when deserializing the response</param>
         /// <returns>The deserialized response</returns>
-        public virtual T DownloadJson<T>(string url, JsonSerializerSettings downloadSerializerSettings = null) => this.DownloadJson<T>(new Uri(url), downloadSerializerSettings);
+        public virtual T DownloadJson<T>(string url, JsonSerializerSettings downloadSerializerSettings = null)
+        {
+            return DownloadJson<T>(new Uri(url), downloadSerializerSettings);
+        }
 
         /// <summary>
         /// Download string but with Json
@@ -78,10 +81,10 @@ namespace Penguin.Web
         /// <returns>The deserialized response</returns>
         public virtual T DownloadJson<T>(Uri url, JsonSerializerSettings downloadSerializerSettings = null)
         {
-            this.Headers[HttpRequestHeader.Accept] = this.JsonAcceptContentType;
-            this.PreRequest(url);
+            Headers[HttpRequestHeader.Accept] = JsonAcceptContentType;
+            PreRequest(url);
 
-            return JsonConvert.DeserializeObject<T>(this.DownloadString(url), downloadSerializerSettings ?? this.DefaultSettings);
+            return JsonConvert.DeserializeObject<T>(DownloadString(url), downloadSerializerSettings ?? DefaultSettings);
         }
 
         /// <summary>
@@ -93,7 +96,7 @@ namespace Penguin.Web
         /// <returns>A JsonObject representation of the return</returns>
         public TReturn UploadHttpQuery<TReturn>(string url, HttpQuery query)
         {
-            this.Headers[HttpRequestHeader.ContentType] = this.FormContentType;
+            Headers[HttpRequestHeader.ContentType] = FormContentType;
 
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -105,10 +108,13 @@ namespace Penguin.Web
                 throw new ArgumentNullException(nameof(query));
             }
 
-            return this.UploadJson<TReturn>(new Uri(url), query.ToString());
+            return UploadJson<TReturn>(new Uri(url), query.ToString());
         }
 
-        public TReturn UploadHttpQuery<TReturn>(Uri url, HttpQuery query) => throw new NotImplementedException();
+        public TReturn UploadHttpQuery<TReturn>(Uri url, HttpQuery query)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Upload string, but with Json
@@ -118,7 +124,10 @@ namespace Penguin.Web
         /// <param name="toUpload">The pre-serialized object to upload</param>
         /// <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
         /// <returns>The response, deserialized</returns>
-        public virtual T UploadJson<T>(string url, string toUpload, JsonSerializerSettings downloadSerializerSettings = null) => this.UploadJson<T>(new Uri(url), toUpload, downloadSerializerSettings);
+        public virtual T UploadJson<T>(string url, string toUpload, JsonSerializerSettings downloadSerializerSettings = null)
+        {
+            return UploadJson<T>(new Uri(url), toUpload, downloadSerializerSettings);
+        }
 
         /// <summary>
         /// Upload string, but with Json
@@ -126,7 +135,10 @@ namespace Penguin.Web
         /// <param name="url">The url to post to</param>
         /// <param name="toUpload">The serialized object to upload</param>
         /// <returns>The response, deserialized</returns>
-        public virtual string UploadJson(string url, string toUpload) => this.UploadJson(new Uri(url), toUpload);
+        public virtual string UploadJson(string url, string toUpload)
+        {
+            return UploadJson(new Uri(url), toUpload);
+        }
 
         /// <summary>
         /// Upload string, but with Json
@@ -136,10 +148,10 @@ namespace Penguin.Web
         /// <returns>The response, deserialized</returns>
         public virtual string UploadJson(Uri url, string toUpload)
         {
-            this.Headers[HttpRequestHeader.ContentType] = this.JsonContentType;
-            this.Headers[HttpRequestHeader.Accept] = this.JsonAcceptContentType;
-            this.PreRequest(url);
-            return this.UploadString(url, toUpload);
+            Headers[HttpRequestHeader.ContentType] = JsonContentType;
+            Headers[HttpRequestHeader.Accept] = JsonAcceptContentType;
+            PreRequest(url);
+            return UploadString(url, toUpload);
         }
 
         /// <summary>
@@ -152,9 +164,9 @@ namespace Penguin.Web
         /// <returns>The response, deserialized</returns>
         public virtual T UploadJson<T>(Uri url, string toUpload, JsonSerializerSettings downloadSerializerSettings = null)
         {
-            this.Headers[HttpRequestHeader.Accept] = this.JsonAcceptContentType;
-            this.PreRequest(url);
-            return JsonConvert.DeserializeObject<T>(this.UploadString(url, toUpload), downloadSerializerSettings ?? this.DefaultSettings);
+            Headers[HttpRequestHeader.Accept] = JsonAcceptContentType;
+            PreRequest(url);
+            return JsonConvert.DeserializeObject<T>(UploadString(url, toUpload), downloadSerializerSettings ?? DefaultSettings);
         }
 
         /// <summary>
@@ -164,7 +176,10 @@ namespace Penguin.Web
         /// <param name="toUpload">The pre-serialized object to upload</param>
         /// <param name="uploadSerializerSettings">The settings to use when serializing the uploaded object</param>
         /// <returns>The string response from the server</returns>
-        public virtual string UploadJson(string url, object toUpload, JsonSerializerSettings uploadSerializerSettings = null) => this.UploadJson(new Uri(url), toUpload, uploadSerializerSettings);
+        public virtual string UploadJson(string url, object toUpload, JsonSerializerSettings uploadSerializerSettings = null)
+        {
+            return UploadJson(new Uri(url), toUpload, uploadSerializerSettings);
+        }
 
         /// <summary>
         /// Upload string, but with Json
@@ -175,10 +190,10 @@ namespace Penguin.Web
         /// <returns>The string response from the server</returns>
         public virtual string UploadJson(Uri url, object toUpload, JsonSerializerSettings uploadSerializerSettings = null)
         {
-            this.Headers[HttpRequestHeader.ContentType] = this.JsonContentType;
-            this.Headers[HttpRequestHeader.Accept] = this.JsonAcceptContentType;
-            this.PreRequest(url);
-            return this.UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? this.DefaultSettings));
+            Headers[HttpRequestHeader.ContentType] = JsonContentType;
+            Headers[HttpRequestHeader.Accept] = JsonAcceptContentType;
+            PreRequest(url);
+            return UploadString(url, JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings));
         }
 
         /// <summary>
@@ -190,7 +205,10 @@ namespace Penguin.Web
         /// <param name="downloadSerializerSettings">The settings to use when deserializing the response</param>
         /// <param name="uploadSerializerSettings">The settings to use when serializing the request</param>
         /// <returns>The response, deserialized</returns>
-        public virtual T UploadJson<T>(string url, object toUpload, JsonSerializerSettings downloadSerializerSettings = null, JsonSerializerSettings uploadSerializerSettings = null) => this.UploadJson<T>(new Uri(url), toUpload, downloadSerializerSettings, uploadSerializerSettings);
+        public virtual T UploadJson<T>(string url, object toUpload, JsonSerializerSettings downloadSerializerSettings = null, JsonSerializerSettings uploadSerializerSettings = null)
+        {
+            return UploadJson<T>(new Uri(url), toUpload, downloadSerializerSettings, uploadSerializerSettings);
+        }
 
         /// <summary>
         /// Upload string, but with Json
@@ -207,16 +225,16 @@ namespace Penguin.Web
 
             if (!(toUpload is null))
             {
-                postBody = JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? this.DefaultSettings);
+                postBody = JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings);
             }
 
-            this.Headers[HttpRequestHeader.Accept] = this.JsonAcceptContentType;
-            this.Headers[HttpRequestHeader.ContentType] = this.JsonContentType;
-            this.PreRequest(url);
+            Headers[HttpRequestHeader.Accept] = JsonAcceptContentType;
+            Headers[HttpRequestHeader.ContentType] = JsonContentType;
+            PreRequest(url);
 
-            string response = this.UploadString(url, postBody);
+            string response = UploadString(url, postBody);
 
-            return JsonConvert.DeserializeObject<T>(response, downloadSerializerSettings ?? this.DefaultSettings);
+            return JsonConvert.DeserializeObject<T>(response, downloadSerializerSettings ?? DefaultSettings);
         }
 
         /// <summary>

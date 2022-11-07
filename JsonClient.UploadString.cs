@@ -11,7 +11,10 @@ namespace Penguin.Web
         /// <param name="address">The Uri to download</param>
         /// <param name="body">The content to post in the body</param>
         /// <returns>The response as a string</returns>
-        public new virtual string UploadString(string address, string body) => this.UploadString(new Uri(address), body);
+        public virtual new string UploadString(string address, string body)
+        {
+            return UploadString(new Uri(address), body);
+        }
 
         /// <summary>
         /// Posts the provided body and downloads the Uri as a string
@@ -19,9 +22,9 @@ namespace Penguin.Web
         /// <param name="address">The Uri to download</param>
         /// <param name="body">The content to post in the body</param>
         /// <returns>The response as a string</returns>
-        public new virtual string UploadString(Uri address, string body)
+        public virtual new string UploadString(Uri address, string body)
         {
-            this.PreRequest(address);
+            PreRequest(address);
 
             return base.UploadString(address, body);
         }
@@ -32,7 +35,10 @@ namespace Penguin.Web
         /// <param name="address">The Uri to download</param>
         /// <param name="body">The content to post in the body</param>
         /// <returns>The response as a string</returns>
-        public virtual TReturn UploadString<TReturn>(string address, string body) => this.UploadString<TReturn>(new Uri(address), body);
+        public virtual TReturn UploadString<TReturn>(string address, string body)
+        {
+            return UploadString<TReturn>(new Uri(address), body);
+        }
 
         /// <summary>
         /// Posts the provided body and downloads the Uri as a string
@@ -42,7 +48,7 @@ namespace Penguin.Web
         /// <returns>The response as a string</returns>
         public virtual TReturn UploadString<TReturn>(Uri address, string body)
         {
-            this.PreRequest(address);
+            PreRequest(address);
 
             return JsonConvert.DeserializeObject<TReturn>(base.UploadString(address, body));
         }
