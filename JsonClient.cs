@@ -14,7 +14,7 @@ namespace Penguin.Web
     /// </summary>
     public partial class JsonClient : WebClientEx
     {
-        private static readonly object threadSafetyLock = new object();
+        private static readonly object threadSafetyLock = new();
 
         /// <summary>
         /// The default settings to use for serialization/deserialization if not otherwise specified
@@ -98,17 +98,9 @@ namespace Penguin.Web
         {
             Headers[HttpRequestHeader.ContentType] = FormContentType;
 
-            if (string.IsNullOrWhiteSpace(url))
-            {
-                throw new ArgumentException($"'{nameof(url)}' cannot be null or whitespace.", nameof(url));
-            }
-
-            if (query is null)
-            {
-                throw new ArgumentNullException(nameof(query));
-            }
-
-            return UploadJson<TReturn>(new Uri(url), query.ToString());
+            return string.IsNullOrWhiteSpace(url)
+                ? throw new ArgumentException($"'{nameof(url)}' cannot be null or whitespace.", nameof(url))
+                : query is null ? throw new ArgumentNullException(nameof(query)) : UploadJson<TReturn>(new Uri(url), query.ToString());
         }
 
         public TReturn UploadHttpQuery<TReturn>(Uri url, HttpQuery query)
@@ -223,7 +215,7 @@ namespace Penguin.Web
         {
             string postBody = "";
 
-            if (!(toUpload is null))
+            if (toUpload is not null)
             {
                 postBody = JsonConvert.SerializeObject(toUpload, uploadSerializerSettings ?? DefaultSettings);
             }

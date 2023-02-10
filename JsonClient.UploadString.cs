@@ -11,7 +11,7 @@ namespace Penguin.Web
         /// <param name="address">The Uri to download</param>
         /// <param name="body">The content to post in the body</param>
         /// <returns>The response as a string</returns>
-        public virtual new string UploadString(string address, string body)
+        public new virtual string UploadString(string address, string body)
         {
             return UploadString(new Uri(address), body);
         }
@@ -22,7 +22,7 @@ namespace Penguin.Web
         /// <param name="address">The Uri to download</param>
         /// <param name="body">The content to post in the body</param>
         /// <returns>The response as a string</returns>
-        public virtual new string UploadString(Uri address, string body)
+        public new virtual string UploadString(Uri address, string body)
         {
             PreRequest(address);
 
