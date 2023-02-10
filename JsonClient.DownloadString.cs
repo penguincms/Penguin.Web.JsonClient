@@ -9,7 +9,7 @@ namespace Penguin.Web
         /// </summary>
         /// <param name="address">The Uri to download</param>
         /// <returns>The response as a string</returns>
-        public new virtual string DownloadString(string address)
+        public virtual new string DownloadString(string address)
         {
             return DownloadString(new Uri(address));
         }
@@ -19,7 +19,7 @@ namespace Penguin.Web
         /// </summary>
         /// <param name="address">The Uri to download</param>
         /// <returns>The response as a string</returns>
-        public new virtual string DownloadString(Uri address)
+        public virtual new string DownloadString(Uri address)
         {
             PreRequest(address);
 
