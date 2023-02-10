@@ -4,7 +4,7 @@
     <PackageProjectUrl>https://github.com/PenguinCms/Penguin.Web.JsonClient</PackageProjectUrl>
     <Version>5.0.5</Version>
     <Description>A simple webclient wrapper that serializes and deserializes objects using Newtonsoft.Json</Description>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net7.0</TargetFrameworks>
     <AssemblyName>Penguin.Web.JsonClient</AssemblyName>
     <RootNamespace>Penguin.Web.JsonClient</RootNamespace>
     <DocumentationFile>Penguin.Web.JsonClient.xml</DocumentationFile>
