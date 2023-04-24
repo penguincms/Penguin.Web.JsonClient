@@ -104,11 +104,6 @@ namespace Penguin.Web
                 : query is null ? throw new ArgumentNullException(nameof(query)) : UploadJson<TReturn>(new Uri(url), query.ToString());
         }
 
-        public TReturn UploadHttpQuery<TReturn>(Uri url, HttpQuery query)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Upload string, but with Json
         /// </summary>
